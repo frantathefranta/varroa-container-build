@@ -6,16 +6,16 @@ ENV varroa_version=$varroa_version
 # Install ca-certificates
 RUN apk add --no-cache ca-certificates
 
-RUN wget -q -O /tmp/varroa.zip "https://gitlab.com/passelecasque/varroa/-/archive/${varroa_version}/varroa-${varroa_version}.zip" \
-&& \
-mkdir /app \
-&& \
-unzip -q -d /app /tmp/varroa.zip \
-&& \
-mv /app/varroa-${varroa_version}/* /app \
-&& \
-rm -r /app/varroa-${varroa_version}
-
+# RUN wget -q -O /tmp/varroa.zip "https://gitlab.com/passelecasque/varroa/-/archive/${varroa_version}/varroa-${varroa_version}.zip" \
+# && \
+# mkdir /app \
+# && \
+# unzip -q -d /app /tmp/varroa.zip \
+# && \
+# mv /app/varroa-${varroa_version}/* /app \
+# && \
+# rm -r /app/varroa-${varroa_version}
+RUN git clone https://gitlab.com/passelecasque/varroa.git /app
 # Set the working directory inside the container
 WORKDIR /app
 

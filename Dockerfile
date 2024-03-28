@@ -4,7 +4,7 @@ ARG varroa_version
 ENV varroa_version=$varroa_version
 
 # Install ca-certificates
-RUN apk add --no-cache ca-certificates
+RUN apk add --no-cache ca-certificates git
 
 # RUN wget -q -O /tmp/varroa.zip "https://gitlab.com/passelecasque/varroa/-/archive/${varroa_version}/varroa-${varroa_version}.zip" \
 # && \

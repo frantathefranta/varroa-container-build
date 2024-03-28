@@ -2,8 +2,10 @@ name: ci
 
 on:
   push:
-    branches:
-      - 'main'
+    paths:
+      - Dockerfile
+    # branches:
+    #   - 'main'
 
 jobs:
   docker:

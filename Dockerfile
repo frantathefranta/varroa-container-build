@@ -10,7 +10,12 @@ RUN wget -q -O /tmp/varroa.zip "https://gitlab.com/passelecasque/varroa/-/archiv
 && \
 mkdir /app \
 && \
-unzip -q -d /app /tmp/varroa.zip
+unzip -q -d /app /tmp/varroa.zip \
+&& \
+mv /app/varroa-${varroa_version}/* /app \
+&& \
+rm -r /app/varroa-${varroa_version}
+
 # Set the working directory inside the container
 WORKDIR /app
 

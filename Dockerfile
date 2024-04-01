@@ -28,12 +28,14 @@ RUN go get github.com/warmans/golocc
 RUN cd cmd/varroa;CGO_ENABLED=0 go build -ldflags '-extldflags "-static"' -o /app/varroa
 RUN chmod +x /app/varroa
 
-FROM scratch
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+FROM alpine:3.18
+# COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /app/varroa /usr/bin/varroa
 VOLUME /config
 VOLUME /watch
 VOLUME /downloads
 WORKDIR /config
 COPY ./entrypoint.sh /entrypoint.sh
+RUN apk add --no-cache bash
+RUN chmod +x /entrypoint.sh
 CMD ["/entrypoint.sh"]

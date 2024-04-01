@@ -35,4 +35,5 @@ VOLUME /config
 VOLUME /watch
 VOLUME /downloads
 WORKDIR /config
-CMD ["/usr/bin/varroa", "start", "--no-daemon"]
+COPY ./entrypoint.sh /entrypoint.sh
+CMD ["/entrypoint.sh"]

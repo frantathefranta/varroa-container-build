@@ -10,7 +10,7 @@ cp /config/config.template.yaml /config/config.yaml
 [[ -n "${PUSHOVER_TOKEN}" ]] && echo "$(sed "s/{PUSHOVER_TOKEN}/${PUSHOVER_TOKEN}/g" /config/config.yaml)" > /config/config.yaml
 [[ -n "${WEBSERVER_STATS_USER}" ]] && echo "$(sed "s/{WEBSERVER_STATS_USER}/${WEBSERVER_STATS_USER}/g" /config/config.yaml)" > /config/config.yaml
 [[ -n "${WEBSERVER_STATS_PASSWORD}" ]] && echo "$(sed "s/{WEBSERVER_STATS_PASSWORD}/${WEBSERVER_STATS_PASSWORD}/g" /config/config.yaml)" > /config/config.yaml
-[[ -n "${WEBSERVER_STATS_TOKEN}" ]] && echo "$(sed "s/{WEBSERVER_TOKEN}/${WEBSERVER_TOKEN}/g" /config/config.yaml)" > /config/config.yaml
+[[ -n "${WEBSERVER_TOKEN}" ]] && echo "$(sed "s/{WEBSERVER_TOKEN}/${WEBSERVER_TOKEN}/g" /config/config.yaml)" > /config/config.yaml
 
 # Start varroa
 exec /usr/bin/varroa start --no-daemon

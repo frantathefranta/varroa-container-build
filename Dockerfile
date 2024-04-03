@@ -36,6 +36,6 @@ VOLUME /watch
 VOLUME /downloads
 WORKDIR /config
 COPY ./entrypoint.sh /entrypoint.sh
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash curl
 RUN chmod +x /entrypoint.sh
 CMD ["/entrypoint.sh"]

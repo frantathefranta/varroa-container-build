@@ -23,8 +23,9 @@ WORKDIR /app
 RUN go mod download
 
 # Run make commands to prepare and build the binary
-RUN go get -u github.com/divan/depscheck
-RUN go get github.com/warmans/golocc
+# RUN go get -u github.com/divan/depscheck
+# RUN go get github.com/warmans/golocc
+RUN go get golang.org/x/crypto/ssh/terminal@v0.22.0
 RUN cd cmd/varroa;CGO_ENABLED=0 go build -ldflags '-extldflags "-static"' -o /app/varroa
 RUN chmod +x /app/varroa
 

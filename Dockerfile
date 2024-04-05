@@ -15,7 +15,7 @@ RUN apk add --no-cache ca-certificates git
 # mv /app/varroa-${varroa_version}/* /app \
 # && \
 # rm -r /app/varroa-${varroa_version}
-RUN git clone https://gitlab.com/passelecasque/varroa.git /app
+RUN git clone -b ${varroa_version} --single-branch https://gitlab.com/passelecasque/varroa.git /app
 # Set the working directory inside the container
 WORKDIR /app
 

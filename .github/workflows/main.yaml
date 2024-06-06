@@ -34,6 +34,6 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           build-args: |
-            varroa_version=v34
+            varroa_version=master
           tags: |
             ${{ env.IMAGE }}:${{ github.sha }}-${{ github.run_number }}

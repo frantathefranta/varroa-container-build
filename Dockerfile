@@ -23,20 +23,21 @@ WORKDIR /app
 RUN go mod download
 
 # Run make commands to prepare and build the binary
-# RUN go get -u github.com/divan/depscheck
-# RUN go get github.com/warmans/golocc
+RUN go get -u github.com/divan/depscheck
+RUN go get github.com/warmans/golocc
 RUN go get golang.org/x/crypto/ssh/terminal@v0.22.0
 RUN cd cmd/varroa;CGO_ENABLED=0 go build -ldflags '-extldflags "-static"' -o /app/varroa
 RUN chmod +x /app/varroa
 
-FROM alpine:3.18
-# COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+FROM scratch
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /app/varroa /usr/bin/varroa
 VOLUME /config
 VOLUME /watch
 VOLUME /downloads
 WORKDIR /config
-COPY ./entrypoint.sh /entrypoint.sh
-RUN apk add --no-cache bash curl
-RUN chmod +x /entrypoint.sh
-CMD ["/entrypoint.sh"]
+# COPY ./entrypoint.sh /entrypoint.sh
+# RUN apk add --no-cache bash curl
+# RUN chmod +x /entrypoint.sh
+# CMD ["/entrypoint.sh"]
+CMD ["/usr/bin/varroa", "start", "--no-daemon"]
